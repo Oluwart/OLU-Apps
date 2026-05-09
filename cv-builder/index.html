@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>CV Generator</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- GOOGLE FONT -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- ================= FORM SECTION ================= -->
+
+    <div class="form-section">
+
+      <h2>Create Your CV</h2>
+
+      <!-- BASIC INFO -->
+
+      <input
+        type="text"
+        id="name"
+        placeholder="Full Name"
+      >
+
+      <input
+        type="text"
+        id="title"
+        placeholder="Job Title"
+      >
+
+      <textarea
+        id="about"
+        placeholder="About You"
+      ></textarea>
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Email"
+      >
+
+      <input
+        type="text"
+        id="phone"
+        placeholder="Phone Number"
+      >
+
+      <input
+        type="text"
+        id="skills"
+        placeholder="Skills (Separate with commas)"
+      >
+
+
+      <!-- ================= EDUCATION ================= -->
+
+      <div class="education-form-section">
+
+        <div class="section-title">
+
+          <h3>Education</h3>
+
+          <button id="addEducationBtn">
+            + Add
+          </button>
+
+        </div>
+
+        <div id="educationInputs">
+
+          <div class="education-group">
+
+            <input
+              type="text"
+              class="school"
+              placeholder="School Name"
+            >
+
+            <input
+              type="text"
+              class="course"
+              placeholder="Course / Program"
+            >
+
+            <input
+              type="text"
+              class="year"
+              placeholder="Year"
+            >
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================= EXPERIENCE ================= -->
+
+      <div class="experience-form-section">
+
+        <div class="section-title">
+
+          <h3>Experience</h3>
+
+          <button id="addExperienceBtn">
+            + Add
+          </button>
+
+        </div>
+
+        <div id="experienceInputs">
+
+          <div class="experience-group">
+
+            <input
+              type="text"
+              class="company"
+              placeholder="Company Name"
+            >
+
+            <input
+              type="text"
+              class="position"
+              placeholder="Job Title"
+            >
+
+            <input
+              type="text"
+              class="experience-year"
+              placeholder="Year"
+            >
+
+            <textarea
+              class="job-description"
+              placeholder="Job Description"
+            ></textarea>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================= REFERENCES ================= -->
+
+      <div class="reference-form-section">
+
+        <div class="section-title">
+
+          <h3>References</h3>
+
+          <button id="addReferenceBtn">
+            + Add
+          </button>
+
+        </div>
+
+        <div id="referenceInputs">
+
+          <div class="reference-group">
+
+            <input
+              type="text"
+              class="reference-name"
+              placeholder="Reference Name"
+            >
+
+            <input
+              type="text"
+              class="reference-position"
+              placeholder="Position"
+            >
+
+            <input
+              type="text"
+              class="reference-company"
+              placeholder="Company"
+            >
+
+            <input
+              type="text"
+              class="reference-contact"
+              placeholder="Phone or Email"
+            >
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================= ACTION BUTTONS ================= -->
+
+      <button id="downloadBtn">
+        Download CV
+      </button>
+
+      <button id="printBtn">
+        Print CV
+      </button>
+
+      <button id="clearBtn">
+        Clear CV
+      </button>
+
+    </div>
+
+
+    <!-- ================= CV PREVIEW ================= -->
+
+    <div class="preview-section">
+
+      <div
+        class="cv-preview"
+        id="cv-preview"
+      >
+
+        <!-- HEADER -->
+
+        <h1 id="preview-name">
+          Your Name
+        </h1>
+
+        <h3 id="preview-title">
+          Professional Title
+        </h3>
+
+        <p id="preview-about">
+          Your professional summary will appear here.
+        </p>
+
+
+        <!-- CONTACT INFO -->
+
+        <div class="info">
+
+          <p id="preview-email">
+            Email
+          </p>
+
+          <p id="preview-phone">
+            Phone
+          </p>
+
+        </div>
+
+
+        <!-- ================= SKILLS ================= -->
+
+        <div class="skills-section">
+
+          <h2>Skills</h2>
+
+          <div
+            id="preview-skills"
+            class="skills-container"
+          >
+
+            <span>HTML</span>
+            <span>CSS</span>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================= EDUCATION ================= -->
+
+        <div class="education-section">
+
+          <h2>Education</h2>
+
+          <div id="educationPreview"></div>
+
+        </div>
+
+
+        <!-- ================= EXPERIENCE ================= -->
+
+        <div class="experience-section">
+
+          <h2>Experience</h2>
+
+          <div id="experiencePreview"></div>
+
+        </div>
+
+
+        <!-- ================= REFERENCES ================= -->
+
+        <div class="reference-section">
+
+          <h2>References</h2>
+
+          <div id="referencePreview"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- HTML2PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdul-Rashid Ibrahim | Portfolio</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #0f172a;
+  color: #f1f5f9;
+}
+
+/* NAVBAR */
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 50px;
+  background: #020617;
+  position: sticky;
+  top: 0;
+}
+
+nav h2 {
+  margin: 0;
+}
+
+nav a:hover{
+    background-color: #3b82f6;
+    border-radius: 10px;
+    padding: 10px 10px;
+    color: #020617;
+}
+
+nav a {
+  position: relative;
+  transition: 0.3s;
+  color: #f1f5f9;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: #3b82f6;
+  left: 0;
+  bottom: -5px;
+  transition: 0.3s;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+/* HERO */
+header {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+header h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+header p {
+  color: #94a3b8;
+  font-size: 18px;
+}
+
+/* SECTIONS */
+section {
+  max-width: 1000px;
+  margin: auto;
+  padding: 60px 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+/* CARDS */
+.card {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+
+/* PROJECT GRID */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* SKILLS */
+.skills span {
+  display: inline-block;
+  background: #334155;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 8px;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 80px 50px;
+  flex-wrap: wrap;
+}
+
+.hero-text {
+  max-width: 500px;
+}
+
+.hero-text h1 {
+  font-size: 42px;
+}
+
+.hero-text p {
+  color: #94a3b8;
+  margin: 15px 0;
+}
+
+/* BUTTON HOVER */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #3b82f6;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+  background: transparent;
+  border: 1px solid #3b82f6;
+  margin-left: 10px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: #2563eb;
+  transform: translateY(-3px);
+  transform: scale(1.05);
+}
+
+.cv-btn {
+  background: transparent;
+  border: 1px solid #3b82f6;
+  margin-left: 10px;
+}
+
+.cv-btn:hover {
+  background: #3b82f6;
+} 
+
+.hero-image img {
+  width: 250px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.skills span {
+  transition: 0.3s;
+}
+
+.skills span:hover {
+  background: #3b82f6;
+  transform: scale(1.05);
+}
+
+/* CARD SECTION STYLE */
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.card {
+  transition: transform 0.3s ease;
+   transition: 0.3s;
+}
+
+/* IMAGE HOVER */
+.hero-image img {
+  transition: 0.4s;
+  transition: transform 0.4s ease;
+}
+
+.hero-image img:hover {
+  transform: scale(1.05);
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+
+  /* NAVBAR */
+  nav {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+  }
+
+  nav div {
+    margin-top: 10px;
+  }
+
+  nav a {
+    display: inline-block;
+    margin: 5px 10px;
+  }
+
+  /* HERO */
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 50px 20px;
+  }
+
+  .hero-text h1 {
+    font-size: 28px;
+  }
+
+  .hero-image img {
+    width: 180px;
+    margin-top: 20px;
+  }
+
+  /* BUTTONS */
+  .btn {
+    display: block;
+    margin: 10px auto;
+    width: 80%;
+    text-align: center;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 40px 15px;
+  }
+
+  /* PROJECT GRID */
+  .projects {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+.socials {
+  margin-top: 15px;
+}
+
+.socials a {
+  display: inline-block;
+  margin: 5px;
+  padding: 10px 15px;
+  background: #334155;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.socials a:hover {
+  background: #3b82f6;
+}
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  font-size: 24px;
+  padding: 15px;
+  border-radius: 50%;
+  text-decoration: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #020617;
+  color: #94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <h2>Abdul-Rashid</h2>
+  <div>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+
+  <div class="hero-text">
+    <h1>Hi, I'm Abdul-Rashid Ibrahim</h1>
+    <p>Web Developer | IT Technician | Graphic Designer</p>
+    <a href="#projects" class="btn">View My Work</a>
+    <a href="cv.pdf" download class="btn cv-btn">Download CV</a>
+  </div>
+
+  <div class="hero-image">
+    <img src="images/pic.jpg" alt="My Photo" style="width: 200px; border-radius: 20px;">
+  </div>
+
+</header>
+
+<!-- ABOUT -->
+<section id="about" class="fade-in">
+  <h2>About Me</h2>
+  <div class="card">
+    <p>
+      I am a passionate IT student with skills in web development, technical support, and graphic design.
+      I enjoy building solutions that solve real-world problems and improve everyday life in my community.
+    </p>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="fade-in">
+  <h2>Projects</h2>
+  <div class="projects">
+
+    <div class="card">
+      <img src="images/project1.jpg" alt="Project 1">
+      <h3>Community Help Platform</h3>
+      <p>A website designed to help people solve everyday problems.</p>
+    </div>
+
+    <div class="card">
+      <img src="images/project2.jpg" alt="Project 2">
+      <h3>Portfolio Website</h3>
+      <p>A personal website to showcase my skills and projects.</p>
+    </div>
+
+    <div class="card">
+      <img src="images/project3.jpg" alt="Project 3">
+      <h3>Graphic Design Works</h3>
+      <p>Flyers, posters, and branding designs.</p>
+    </div>
+
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="fade-in">
+  <h2>Skills</h2>
+  <div class="card skills">
+    <span>HTML</span>
+    <span>CSS</span>
+    <span>JavaScript</span>
+    <span>Networking</span>
+    <span>IT Support</span>
+    <span>Photoshop</span>
+    <span>Graphic Design</span>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="fade-in">
+  <h2>Contact</h2>
+  <div class="card">
+      <p>Email: rashid.abdul06@gmail.com</p>
+      <p>Phone: +233544600900 | +233247499940</p>
+
+      <div class="socials">
+        <a href="https://wa.me/233544600900" target="_blank">WhatsApp</a>
+        <a href="https://github.com/Oluwart" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/abdul-rashid-ibrahim-698276132" target="_blank">LinkedIn</a>
+      </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Abdul-Rashid Ibrahim</p>
+</footer>
+
+<!-- <script>
+  const elements = document.querySelectorAll('.fade-in');
+
+  function showOnScroll() {
+    elements.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+
+      if (top < windowHeight - 100) {
+        el.classList.add('show');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', showOnScroll);
+</script> -->
+
+<a href="https://wa.me/233544600900" class="whatsapp-float" target="_blank">
+  💬
+</a>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Image to PDF Pro</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #f2f4f8;
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  color: #222;
+}
+
+.container {
+  width: 100%;
+  max-width: 950px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* TOP CONTROLS */
+.top-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+input, select {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+/* UPLOAD */
+.upload-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #4a90e2;
+  background: #f9fbff;
+  padding: 25px;
+  text-align: center;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  transition: 0.2s;
+}
+
+.upload-box:hover {
+  background: #eef5ff;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+/* IMAGE GRID */
+.preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+  position: relative;
+  cursor: grab;
+  touch-action: manipulation;
+}
+
+.card:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.card:active {
+  transform: scale(0.98);
+}
+
+.card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+
+/* REMOVE BUTTON */
+.remove {
+  padding: 3px;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: rgba(255,0,0,0.85);
+  color: white;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ACTIONS */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+button {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.convert {
+  background: #4a90e2;
+  color: white;
+  flex: 2;
+}
+
+.clear {
+  background: #444;
+  color: white;
+  flex: 1;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* PROGRESS */
+.progress {
+  height: 6px;
+  background: #e6e6e6;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 15px;
+}
+
+.bar {
+  height: 100%;
+  width: 0%;
+  background: #4a90e2;
+  transition: 0.3s;
+}
+
+/* DARK MODE */
+body.dark {
+  background: #121212;
+  color: #f1f1f1;
+}
+
+body.dark .container {
+  background: #1e1e1e;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+body.dark .upload-box {
+  background: #2a2a2a;
+  border-color: #666;
+}
+
+body.dark .upload-box:hover {
+  background: #333;
+}
+
+body.dark input,
+body.dark select {
+  background: #2a2a2a;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+body.dark .card {
+  background: #2a2a2a;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.5);
+}
+
+body.dark .progress {
+  background: #333;
+}
+
+body.dark .progress .bar {
+  background: #4a90e2;
+}
+
+/* =========================
+   MOBILE RESPONSIVE FIX
+========================= */
+@media (max-width: 768px) {
+
+  body {
+    padding: 15px;
+  }
+
+  .container {
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .header h1 {
+    font-size: 18px;
+  }
+
+  /* stack top controls */
+  .top-controls {
+    grid-template-columns: 1fr;
+  }
+
+  input, select, button {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .upload-box {
+    padding: 18px;
+    font-size: 14px;
+  }
+
+  /* smaller image cards */
+  .card img {
+    height: 120px;
+  }
+
+  .preview {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .convert, .clear {
+    width: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <h1>Image to PDF Converter</h1>
+  </div>
+
+  <!-- TOP CONTROLS -->
+  <div class="top-controls">
+    <input id="pdfName" placeholder="PDF name..." />
+    <select id="pageSize">
+      <option value="a4">A4</option>
+      <option value="letter">Letter</option>
+      <option value="fit">Fit</option>
+    </select>
+    <select id="orientation">
+      <option value="p">Portrait</option>
+      <option value="l">Landscape</option>
+    </select>
+    <button onclick="toggleDark()">🌙</button>
+  </div>
+
+  <!-- UPLOAD -->
+  <label class="upload-box" for="fileInput">
+    Click or Drag & Drop Images Here
+  </label>
+  <input type="file" id="fileInput" multiple accept="image/*"/>
+
+  <!-- PREVIEW -->
+  <div class="preview" id="preview"></div>
+
+  <!-- ACTIONS -->
+  <div class="actions">
+    <button class="convert" onclick="convertPDF()">Convert to PDF</button>
+    <button class="clear" onclick="clearAll()">Clear</button>
+  </div>
+
+  <div class="progress">
+    <div class="bar" id="bar"></div>
+  </div>
+
+</div>
+
+<script>
+let images = [];
+
+document.getElementById("fileInput").addEventListener("change", e => {
+  for (let file of e.target.files) {
+    const reader = new FileReader();
+    reader.onload = ev => {
+      images.push(ev.target.result);
+      render();
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+function render() {
+  const preview = document.getElementById("preview");
+  preview.innerHTML = "";
+
+  images.forEach((img, i) => {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.draggable = true;
+
+    div.ondragstart = e => e.dataTransfer.setData("i", i);
+    div.ondragover = e => e.preventDefault();
+    div.ondrop = e => {
+      const from = e.dataTransfer.getData("i");
+      [images[from], images[i]] = [images[i], images[from]];
+      render();
+    };
+
+    div.innerHTML = `
+      <img src="${img}">
+      <button class="remove" onclick="removeImg(${i})">×</button>
+    `;
+
+    preview.appendChild(div);
+  });
+}
+
+function removeImg(i) {
+  images.splice(i, 1);
+  render();
+}
+
+function clearAll() {
+  images = [];
+  render();
+}
+
+function toggleDark() {
+  document.body.classList.toggle("dark");
+}
+
+async function convertPDF() {
+  if (!images.length) return alert("No images selected");
+
+  const { jsPDF } = window.jspdf;
+
+  const pdf = new jsPDF(
+    document.getElementById("orientation").value,
+    "mm",
+    document.getElementById("pageSize").value
+  );
+
+  const name = document.getElementById("pdfName").value || "download";
+  const bar = document.getElementById("bar");
+
+  bar.style.width = "0%";
+
+  for (let i = 0; i < images.length; i++) {
+    const img = new Image();
+    img.src = images[i];
+
+    await new Promise(res => {
+      img.onload = () => {
+        const w = pdf.internal.pageSize.getWidth();
+        const h = (img.height * w) / img.width;
+
+        if (i !== 0) pdf.addPage();
+
+        pdf.addImage(images[i], "JPEG", 0, 0, w, h);
+
+        bar.style.width = ((i + 1) / images.length) * 100 + "%";
+        res();
+      };
+    });
+  }
+
+  pdf.save(name + ".pdf");
+}
+</script>
+
+</body>
+</html>

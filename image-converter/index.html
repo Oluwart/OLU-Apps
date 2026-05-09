@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pro Image Converter</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+:root {
+  --bg: #f4f4f4;
+  --card: #ffffff;
+  --text: #000;
+  --accent: #007bff;
+}
+
+body.dark {
+  --bg: #121212;
+  --card: #1e1e1e;
+  --text: #fff;
+}
+
+select, input, button {
+  color: var(--text);
+}
+
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 12px;
+}
+
+/* MAIN CONTAINER */
+.container {
+  max-width: 600px;
+  margin: auto;
+  background: var(--card);
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* HEADINGS */
+h2, h3 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+/* DROPZONE */
+.dropzone {
+  border: 2px dashed #888;
+  padding: 18px;
+  margin-top: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+/* INPUTS */
+select, input, button {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+}
+
+/* BUTTONS */
+button {
+  background: var(--accent);
+  color: white;
+  font-weight: bold;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* DARK MODE BUTTON */
+.toggle {
+  background: #444;
+  color: white;
+  font-weight: bold;
+}
+
+/* PREVIEW GRID */
+.preview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.preview-grid img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* CROPPER IMAGE */
+#cropImage {
+  width: 100%;
+  max-height: 300px;
+  display: block;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+/* MOBILE TWEAKS */
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+
+  .preview-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  button, select, input {
+    font-size: 15px;
+    padding: 14px;
+  }
+
+  .dropzone {
+    font-size: 13px;
+  }
+}
+
+/* DARK MODE */ 
+.dark {
+  background: var(--bg);
+  color: var(--text);
+} 
+
+#format{
+  margin-top: 10px;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 10px
+}
+
+ #quality {
+  margin-top: 5px;
+  position: relative;
+}
+
+/* SLIDER WRAPPER */
+.slider-wrap {
+  width: 100%;
+  margin-top: 12px;
+  text-align: left;
+}
+
+.slider-wrap label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* MAIN RANGE */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 10px;
+  outline: none;
+
+  /* Dynamic gradient */
+  background: linear-gradient(to right,
+    #007bff 0%,
+    #007bff 80%,
+    #ccc 80%,
+    #ccc 100%);
+}
+
+/* WEBKIT THUMB */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+/* FIREFOX THUMB */
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+/* LABEL */
+.slider-wrap label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* RANGE INPUT FIX */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  max-width: 100%;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* TRACK */
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8px;
+  background: #ccc;
+  border-radius: 10px;
+}
+
+input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 8px;
+  background: #ccc;
+  border-radius: 10px;
+}
+
+/* THUMB */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #007bff;
+  border-radius: 50%;
+  margin-top: -6px;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #007bff;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+  input[type="range"] {
+    width: 100%;
+  }
+
+  .slider-wrap {
+    padding: 0;
+    overflow: hidden;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>🔥 Pro Image Converter</h2>
+
+  <button class="toggle" onclick="toggleDark()">🌙 Toggle Dark Mode</button>
+
+  <div class="dropzone" id="dropzone">
+    Drag & Drop Images Here or Click
+    <input type="file" id="upload" multiple accept="image/*" hidden>
+  </div>
+  <br>
+  
+  <label>Compression Quality: <span id="qval">0.8</span></label>
+  <div class="slider-wrap">
+  <input type="range" id="quality" min="0.1" max="1" step="0.1" value="0.8">
+  </div>
+  <br>
+  <div class="preview-grid" id="previewGrid"></div>
+  
+  <select id="format">
+    <option value="image/png">PNG</option>
+    <option value="image/jpeg">JPG</option>
+    <option value="image/webp">WEBP</option>
+    <option value="pdf">PDF</option>
+  </select>
+
+  <button onclick="convertAll()">Convert & Download</button>
+</div>
+
+<script>
+let images = [];
+
+const dropzone = document.getElementById("dropzone");
+const upload = document.getElementById("upload");
+const previewGrid = document.getElementById("previewGrid");
+const qualitySlider = document.getElementById("quality");
+const qval = document.getElementById("qval");
+
+qualitySlider.oninput = () => qval.innerText = qualitySlider.value;
+
+// click upload
+dropzone.onclick = () => upload.click();
+
+// drag & drop
+dropzone.ondragover = e => {
+  e.preventDefault();
+  dropzone.style.borderColor = "blue";
+};
+
+dropzone.ondragleave = () => {
+  dropzone.style.borderColor = "#888";
+};
+
+dropzone.ondrop = e => {
+  e.preventDefault();
+  handleFiles(e.dataTransfer.files);
+};
+
+// file input
+upload.onchange = e => handleFiles(e.target.files);
+
+function handleFiles(files) {
+  for (let file of files) {
+    let reader = new FileReader();
+    reader.onload = e => {
+      images.push(e.target.result);
+      renderPreview();
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+function renderPreview() {
+  previewGrid.innerHTML = "";
+  images.forEach(src => {
+    let img = document.createElement("img");
+    img.src = src;
+    previewGrid.appendChild(img);
+  });
+}
+
+function convertAll() {
+  let format = document.getElementById("format").value;
+  let quality = parseFloat(qualitySlider.value);
+
+  if (images.length === 0) {
+    alert("Upload images first!");
+    return;
+  }
+
+  // 👉 PDF MODE
+  if (format === "pdf") {
+    const { jsPDF } = window.jspdf;
+    let pdf = new jsPDF();
+
+    let count = 0;
+
+    images.forEach((src, i) => {
+      let img = new Image();
+      img.src = src;
+
+      img.onload = function () {
+        let w = pdf.internal.pageSize.getWidth();
+        let h = (img.height * w) / img.width;
+
+        if (i !== 0) pdf.addPage();
+        pdf.addImage(img, "JPEG", 0, 0, w, h);
+
+        count++;
+        if (count === images.length) {
+          pdf.save("images.pdf");
+        }
+      };
+    });
+
+    return;
+  }
+
+  // 👉 IMAGE FORMAT CONVERSION
+  images.forEach((src, i) => {
+    let img = new Image();
+    img.src = src;
+
+    img.onload = function () {
+      let canvas = document.createElement("canvas");
+      let ctx = canvas.getContext("2d");
+
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      ctx.drawImage(img, 0, 0);
+
+      let converted = canvas.toDataURL(format, quality);
+
+      let link = document.createElement("a");
+      link.href = converted;
+
+      let ext = format.split("/")[1];
+      link.download = "image-" + (i+1) + "." + ext;
+
+      link.click();
+    };
+  });
+}
+
+function toggleDark() {
+  document.body.classList.toggle("dark");
+}
+</script>
+
+</body>
+</html>

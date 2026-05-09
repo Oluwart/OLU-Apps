@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OLU Apps</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+      background:#0f172a;
+      color:white;
+      min-height:100vh;
+    }
+
+    a{
+      text-decoration:none;
+    }
+
+    /* ================= NAVBAR ================= */
+
+    .navbar{
+      width:100%;
+      padding:20px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:rgba(255,255,255,0.03);
+      backdrop-filter:blur(10px);
+      position:sticky;
+      top:0;
+      z-index:1000;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:bold;
+      color:#38bdf8;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:20px;
+    }
+
+    .nav-links a{
+      color:white;
+      transition:0.3s;
+      font-size:15px;
+    }
+
+    .nav-links a:hover{
+      color:#38bdf8;
+    }
+
+    /* ================= HERO ================= */
+
+    .hero{
+      padding:90px 8%;
+      text-align:center;
+    }
+
+    .hero h1{
+      font-size:65px;
+      margin-bottom:20px;
+      line-height:1.1;
+    }
+
+    .hero span{
+      color:#38bdf8;
+    }
+
+    .hero p{
+      max-width:700px;
+      margin:auto;
+      color:#cbd5e1;
+      font-size:18px;
+      line-height:1.7;
+    }
+
+    .hero-btns{
+      margin-top:35px;
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:15px 30px;
+      border-radius:12px;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .btn-primary{
+      background:#38bdf8;
+      color:#0f172a;
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-3px);
+    }
+
+    .btn-secondary{
+      border:1px solid rgba(255,255,255,0.2);
+      color:white;
+    }
+
+    .btn-secondary:hover{
+      background:rgba(255,255,255,0.08);
+    }
+
+    /* ================= APPS SECTION ================= */
+
+    .apps{
+      padding:40px 8% 100px;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:50px;
+    }
+
+    .section-title h2{
+      font-size:40px;
+      margin-bottom:10px;
+    }
+
+    .section-title p{
+      color:#94a3b8;
+    }
+
+    .apps-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:30px;
+    }
+
+    .app-card{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:20px;
+      padding:30px;
+      transition:0.3s;
+      backdrop-filter:blur(10px);
+    }
+
+    .app-card:hover{
+      transform:translateY(-8px);
+      border-color:#38bdf8;
+    }
+
+    .app-icon{
+      width:70px;
+      height:70px;
+      border-radius:18px;
+      background:#38bdf8;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:30px;
+      margin-bottom:25px;
+    }
+
+    .app-card h3{
+      font-size:24px;
+      margin-bottom:15px;
+    }
+
+    .app-card p{
+      color:#cbd5e1;
+      line-height:1.6;
+      margin-bottom:25px;
+    }
+
+    .open-btn{
+      display:inline-block;
+      padding:12px 22px;
+      border-radius:10px;
+      background:#38bdf8;
+      color:#0f172a;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .open-btn:hover{
+      opacity:0.85;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer{
+      padding:30px 8%;
+      text-align:center;
+      border-top:1px solid rgba(255,255,255,0.08);
+      color:#94a3b8;
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media(max-width:768px){
+
+      .hero h1{
+        font-size:45px;
+      }
+
+      .nav-links{
+        display:none;
+      }
+
+      .hero p{
+        font-size:16px;
+      }
+    }
+
+    /* ================= MOBILE RESPONSIVE ================= */
+
+@media screen and (max-width: 768px){
+
+  /* NAVBAR */
+
+  .navbar{
+    padding:18px 5%;
+    flex-direction:column;
+    gap:15px;
+    text-align:center;
+  }
+
+  .logo{
+    font-size:24px;
+  }
+
+  .nav-links{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+  }
+
+  .nav-links a{
+    font-size:14px;
+  }
+
+  /* HERO */
+
+  .hero{
+    padding:70px 5%;
+  }
+
+  .hero h1{
+    font-size:40px;
+    line-height:1.2;
+  }
+
+  .hero p{
+    font-size:16px;
+    line-height:1.7;
+  }
+
+  .hero-btns{
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .btn{
+    width:100%;
+    max-width:280px;
+    text-align:center;
+  }
+
+  /* SECTION */
+
+  .apps{
+    padding:30px 5% 80px;
+  }
+
+  .section-title h2{
+    font-size:30px;
+  }
+
+  .section-title p{
+    font-size:15px;
+  }
+
+  /* APP GRID */
+
+  .apps-grid{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+
+  .app-card{
+    padding:25px;
+  }
+
+  .app-icon{
+    width:60px;
+    height:60px;
+    font-size:26px;
+  }
+
+  .app-card h3{
+    font-size:22px;
+  }
+
+  .app-card p{
+    font-size:15px;
+  }
+
+  .open-btn{
+    width:100%;
+    text-align:center;
+  }
+
+  /* FOOTER */
+
+  footer{
+    padding:25px 5%;
+    font-size:14px;
+  }
+
+}
+
+
+/* ================= EXTRA SMALL DEVICES ================= */
+
+@media screen and (max-width: 480px){
+
+  .hero h1{
+    font-size:32px;
+  }
+
+  .hero p{
+    font-size:15px;
+  }
+
+  .section-title h2{
+    font-size:26px;
+  }
+
+  .app-card{
+    border-radius:16px;
+  }
+
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+
+  <nav class="navbar">
+    <div class="logo">OLU Apps</div>
+
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#apps">Apps</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ================= HERO ================= -->
+
+  <section class="hero">
+
+    <h1>Welcome to <span>OLU Apps</span></h1>
+
+    <p>
+      A collection of smart web tools built to make your work easier.
+      Create CVs, convert images, merge PDFs and access all your favorite tools in one place.
+    </p>
+
+    <div class="hero-btns">
+      <a href="#apps" class="btn btn-primary">Explore Apps</a>
+      <a href="portfolio/index.html" class="btn btn-secondary">My Portfolio</a>
+    </div>
+
+  </section>
+
+  <!-- ================= APPS SECTION ================= -->
+
+  <section class="apps" id="apps">
+
+    <div class="section-title">
+      <h2>My Applications</h2>
+      <p>Choose any tool below to get started</p>
+    </div>
+
+    <div class="apps-grid">
+
+      <!-- APP 1 -->
+
+      <div class="app-card">
+
+        <div class="app-icon">📄</div>
+
+        <h3>CV Builder</h3>
+
+        <p>
+          Create professional CVs and resumes easily with modern templates.
+        </p>
+
+        <a href="cv-builder/index.html" class="open-btn">
+          Open App
+        </a>
+
+      </div>
+
+      <!-- APP 2 -->
+
+      <div class="app-card">
+
+        <div class="app-icon">🖼️</div>
+
+        <h3>Image Converter</h3>
+
+        <p>
+          Convert JPG, PNG, WEBP and other image formats quickly online.
+        </p>
+
+        <a href="image-converter/index.html" class="open-btn">
+          Open App
+        </a>
+
+      </div>
+
+      <!-- APP 3 -->
+
+      <div class="app-card">
+
+        <div class="app-icon">📚</div>
+
+        <h3>PDF Combiner</h3>
+
+        <p>
+          Merge multiple PDF files into one clean downloadable document.
+        </p>
+
+        <a href="pdf-combiner/index.html" class="open-btn">
+          Open App
+        </a>
+
+      </div>
+
+      <!-- APP 4 -->
+
+      <div class="app-card">
+
+        <div class="app-icon">🎨</div>
+
+        <h3>Portfolio Website</h3>
+
+        <p>
+          View my graphic design works, branding projects and creative portfolio.
+        </p>
+
+        <a href="portfolio/index.html" class="open-btn">
+          Open App
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer>
+    © 2026 OLU Apps. All Rights Reserved.
+  </footer>
+
+</body>
+</html>
