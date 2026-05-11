@@ -213,9 +213,92 @@
 
       <!-- ================= ACTION BUTTONS ================= -->
 
+      <div class="template-selector">
+
+        <h3>Choose Template</h3>
+
+        <div class="template-grid">
+
+          <!-- MODERN -->
+
+          <div
+            class="template-card active"
+            data-template="modern"
+          >
+
+            <div class="template-preview modern-preview">
+
+              <div class="preview-top"></div>
+
+              <div class="preview-lines">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+            </div>
+
+            <p>Modern</p>
+
+          </div>
+
+
+          <!-- CLASSIC -->
+
+          <div
+            class="template-card"
+            data-template="classic"
+          >
+
+            <div class="template-preview classic-preview">
+
+              <div class="preview-top dark"></div>
+
+              <div class="preview-lines">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+            </div>
+
+            <p>Classic</p>
+
+          </div>
+
+
+          <!-- MINIMAL -->
+
+          <div
+            class="template-card"
+            data-template="minimal"
+          >
+
+            <div class="template-preview minimal-preview">
+
+              <div class="preview-lines">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+            </div>
+
+            <p>Minimal</p>
+
+          </div>
+
+        </div>
+
+      </div>
+
       <button id="downloadBtn">
-        Download CV
+        Download CV (PDF)
       </button>
+
+       <button id="wordBtn">
+         Download Word (DOCX)
+       </button>
 
       <button id="printBtn">
         Print CV
@@ -225,6 +308,7 @@
         Clear CV
       </button>
 
+
     </div>
 
 
@@ -232,10 +316,10 @@
 
     <div class="preview-section">
 
-      <div
-        class="cv-preview"
-        id="cv-preview"
-      >
+       <div
+         class="cv-preview modern-template"
+         id="cv-preview"
+       >
 
         <!-- HEADER -->
 
@@ -327,6 +411,9 @@
 
   <!-- HTML2PDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <!-- HTML DOCX -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 
   <!-- JS -->
   <script src="script.js"></script>

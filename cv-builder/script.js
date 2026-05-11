@@ -576,3 +576,124 @@ document
     );
 
   });
+
+
+// ================= TEMPLATE SWITCHER =================
+
+const templateCards =
+  document.querySelectorAll(".template-card");
+
+const cvPreview =
+  document.getElementById("cv-preview");
+
+templateCards.forEach(card => {
+
+  card.addEventListener("click", () => {
+
+    const template =
+      card.dataset.template;
+
+    // REMOVE OLD TEMPLATE
+    cvPreview.classList.remove(
+      "modern-template",
+      "classic-template",
+      "minimal-template"
+    );
+
+    // ADD NEW TEMPLATE
+    cvPreview.classList.add(
+      `${template}-template`
+    );
+
+    // ACTIVE CARD
+    templateCards.forEach(c =>
+      c.classList.remove("active")
+    );
+
+    card.classList.add("active");
+
+    // SAVE
+    localStorage.setItem(
+      "selectedTemplate",
+      template
+    );
+
+  });
+
+});
+
+
+// LOAD SAVED TEMPLATE
+
+const savedTemplate =
+  localStorage.getItem("selectedTemplate");
+
+if(savedTemplate){
+
+  cvPreview.classList.remove(
+    "modern-template",
+    "classic-template",
+    "minimal-template"
+  );
+
+  cvPreview.classList.add(
+    `${savedTemplate}-template`
+  );
+
+  templateCards.forEach(card => {
+
+    card.classList.remove("active");
+
+    if(card.dataset.template === savedTemplate){
+
+      card.classList.add("active");
+
+    }
+
+  });
+
+}
+
+
+// ================= WORD EXPORT =================
+
+const wordBtn =
+  document.getElementById("wordBtn");
+
+wordBtn.addEventListener("click", () => {
+
+  const cv =
+    document.getElementById("cv-preview");
+
+  // CREATE WORD CONTENT
+  const html = `
+  
+    <html xmlns:o='urn:schemas-microsoft-com:office:office'
+          xmlns:w='urn:schemas-microsoft-com:office:word'
+          xmlns='http://www.w3.org/TR/REC-html40'>
+
+    <head>
+      <meta charset='utf-8'>
+      <title>CV</title>
+    </head>
+
+    <body>
+      ${cv.innerHTML}
+    </body>
+
+    </html>
+  
+  `;
+
+  // CONVERT TO BLOB
+  const blob = new Blob(
+    ['\ufeff', html],
+    {
+      type:'application/msword'
+    }
+  );
+
+  // DOWNLOAD
+  saveAs(blob, "My_CV.doc");
+
+});
