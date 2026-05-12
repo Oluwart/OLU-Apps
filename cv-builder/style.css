@@ -716,3 +716,177 @@ body{
 #wordBtn:hover{
   background:#0b8043;
 }
+
+#generateSummaryBtn{
+  width:100%;
+  padding:14px;
+  background:#7c3aed;
+  color:white;
+  border:none;
+  border-radius:10px;
+  font-size:15px;
+  cursor:pointer;
+  margin-bottom:20px;
+  transition:0.3s;
+}
+
+#generateSummaryBtn:hover{
+  background:#6d28d9;
+}
+
+/* =========================
+   SIDEBAR TEMPLATE
+========================= */
+
+.sidebar-template{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  padding:0;
+  overflow:hidden;
+}
+
+
+/* LEFT SIDEBAR */
+
+.sidebar-template::before{
+  content:"";
+  grid-column:1;
+  grid-row:1 / span 20;
+  background:#1e293b;
+}
+
+
+/* ALL CONTENT */
+
+.sidebar-template > *{
+  position:relative;
+  z-index:2;
+}
+
+
+/* NAME AREA */
+
+.sidebar-template h1,
+.sidebar-template h3{
+  grid-column:2;
+  padding-left:30px;
+}
+
+
+/* INFO */
+
+.sidebar-template .info{
+  grid-column:1;
+  color:white;
+  padding:30px 20px;
+  margin-top:20px;
+}
+
+.sidebar-template .info p{
+  color:white;
+}
+
+
+/* SKILLS */
+
+.sidebar-template .skills-section{
+  grid-column:1;
+  padding:0 20px 20px;
+}
+
+.sidebar-template .skills-section h2{
+  color:white;
+}
+
+.sidebar-template .skills-container{
+  flex-direction:column;
+}
+
+.sidebar-template .skills-container span{
+  background:#334155;
+  color:white;
+}
+
+
+/* RIGHT CONTENT */
+
+.sidebar-template .education-section,
+.sidebar-template .experience-section,
+.sidebar-template .reference-section{
+  grid-column:2;
+  padding:0 30px;
+}
+
+
+/* ABOUT */
+
+.sidebar-template #preview-about{
+  grid-column:2;
+  padding:20px 30px;
+}
+
+
+/* TITLE */
+
+.sidebar-template #preview-title{
+  padding-bottom:10px;
+}
+
+
+/* MOBILE FIX */
+
+@media(max-width:900px){
+
+  .sidebar-template{
+    display:block;
+  }
+
+  .sidebar-template::before{
+    display:none;
+  }
+
+  .sidebar-template .info{
+    background:#1e293b;
+  }
+
+  .sidebar-template .skills-section{
+    background:#1e293b;
+    padding:20px;
+  }
+
+  .sidebar-template .education-section,
+  .sidebar-template .experience-section,
+  .sidebar-template .reference-section,
+  .sidebar-template #preview-about,
+  .sidebar-template h1,
+  .sidebar-template h3{
+    padding-left:20px;
+    padding-right:20px;
+  }
+
+}
+
+/* SIDEBAR MINI PREVIEW */
+
+.sidebar-preview{
+  display:flex;
+  height:120px;
+}
+
+.sidebar-mini{
+  width:35%;
+  background:#1e293b;
+}
+
+.content-mini{
+  flex:1;
+  padding:10px;
+}
+
+.content-mini span{
+  display:block;
+  height:8px;
+  background:#ddd;
+  border-radius:20px;
+  margin-bottom:10px;
+}

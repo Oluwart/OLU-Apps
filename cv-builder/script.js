@@ -597,7 +597,8 @@ templateCards.forEach(card => {
     cvPreview.classList.remove(
       "modern-template",
       "classic-template",
-      "minimal-template"
+      "minimal-template",
+      "sidebar-template"
     );
 
     // ADD NEW TEMPLATE
@@ -633,7 +634,8 @@ if(savedTemplate){
   cvPreview.classList.remove(
     "modern-template",
     "classic-template",
-    "minimal-template"
+    "minimal-template",
+    "sidebar-template"
   );
 
   cvPreview.classList.add(
@@ -695,5 +697,70 @@ wordBtn.addEventListener("click", () => {
 
   // DOWNLOAD
   saveAs(blob, "My_CV.doc");
+
+});
+
+// ================= AI SUMMARY GENERATOR =================
+
+const generateSummaryBtn =
+  document.getElementById("generateSummaryBtn");
+
+generateSummaryBtn.addEventListener("click", () => {
+
+  const title =
+    titleInput.value.toLowerCase();
+
+  let summary = "";
+
+  // WEB DEVELOPER
+  if(title.includes("web")){
+
+    summary =
+      "Passionate Web Developer with experience building responsive and user-friendly websites and web applications. Skilled in HTML, CSS, JavaScript, and modern frontend technologies.";
+
+  }
+
+  // GRAPHIC DESIGNER
+  else if(title.includes("graphic")){
+
+    summary =
+      "Creative Graphic Designer with strong experience in branding, social media design, and visual communication. Skilled in creating modern and engaging designs.";
+
+  }
+
+  // TEACHER
+  else if(title.includes("teacher")){
+
+    summary =
+      "Dedicated Teacher with experience creating engaging learning environments and helping students achieve academic success through effective teaching methods.";
+
+  }
+
+  // ACCOUNTANT
+  else if(title.includes("account")){
+
+    summary =
+      "Detail-oriented Accountant with strong knowledge in financial reporting, budgeting, bookkeeping, and financial analysis.";
+
+  }
+
+  // DEFAULT
+  else{
+
+    summary =
+      "Motivated professional with strong communication, teamwork, and problem-solving skills. Passionate about delivering quality work and achieving organizational goals.";
+
+  }
+
+  // SET SUMMARY
+  aboutInput.value = summary;
+
+  // UPDATE PREVIEW
+  aboutInput.dispatchEvent(
+    new Event("input")
+  );
+
+  // SAVE
+  saveData();
 
 });
